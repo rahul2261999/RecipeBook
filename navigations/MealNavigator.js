@@ -78,6 +78,13 @@ const FilterStack = createStackNavigator({
 const mainNavigator = createDrawerNavigator({
     MealFav:mealsFavNavigator,
     Filter:FilterStack
+},{
+    contentOptions:{
+        activeTintColor:color.bg,
+        itemsContainerStyle: {
+            marginTop: 50,
+          }
+    }
 })
 
 export default createAppContainer(mainNavigator)
