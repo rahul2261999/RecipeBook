@@ -3,12 +3,12 @@ import {StyleSheet,View,Text,ScrollView,Image} from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import NavHeaderButton from '../components/NavHeaderButton'
 import DefaultText from '../components/DefaultText'
-
-import { MEAL } from '../data/raw-data'
+import {useSelector} from 'react-redux'
 
 const MealDetailsScreen = props =>{
+    const allMeal= useSelector(state=>state.meals.allMeals)
     const mealId = props.navigation.getParam('Meal_id')
-    const selectedMeal = MEAL.find(meal=>meal.id===mealId)
+    const selectedMeal = allMeal.find(meal=>meal.id===mealId)
 
     const RenderListItem = item =>{
         return (
@@ -37,10 +37,9 @@ const MealDetailsScreen = props =>{
 }
 
 MealDetailsScreen.navigationOptions = navigateData=>{
-    const mealId = navigateData.navigation.getParam('Meal_id')
-    const selectedMeal = MEAL.find(meal=>meal.id===mealId)
+   const mealTitle = navigateData.navigation.getParam('mealTitle')
     return {
-        headerTitle:selectedMeal.title,
+        headerTitle:mealTitle,
         headerRight:()=><HeaderButtons HeaderButtonComponent={NavHeaderButton}>
                 <Item 
                     title='Favourite'

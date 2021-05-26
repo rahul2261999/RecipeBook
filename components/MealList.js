@@ -11,7 +11,13 @@ const MealList = props =>{
         complexity={ItemData.item.complexity}
         affordability={ItemData.item.affordability}
         image={ItemData.item.imageUrl}
-        onSelectMeal={()=>{props.navigation.navigate('MealDetail',{Meal_id:ItemData.item.id})}} />
+        onSelectMeal={()=>{
+            props.navigation.navigate('MealDetail',{
+                Meal_id:ItemData.item.id,
+                mealTitle:ItemData.item.title
+            }
+                )}} 
+        />
     }
 
     return (

@@ -2,10 +2,10 @@ import React from 'react';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons'
 import NavHeaderButton from '../components/NavHeaderButton'
 import MealList from '../components/MealList'
-import {MEAL} from '../data/raw-data'
-
+import {useSelector} from 'react-redux'
 const Favourites = props =>{
-    const favItem = MEAL.filter(meal=>meal.id==="m1"||meal.id==='m2')
+
+    const favItem = useSelector(state=>state.meals.filteredMeals)
     return <MealList meal={favItem} navigation={props.navigation} />
 
     
