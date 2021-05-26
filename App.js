@@ -6,6 +6,7 @@ import { enableScreens } from 'react-native-screens'
 import AppLoading from 'expo-app-loading'
 import {createStore, combineReducers} from 'redux'
 import {Provider} from 'react-redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 import MealsNavigator from './navigations/MealNavigator'
 
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
   meals:mealReducer
 })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,composeWithDevTools())
 
 const fetchFont = ()=>{
   return Font.loadAsync({

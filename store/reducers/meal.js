@@ -1,5 +1,5 @@
 import {MEAL} from '../../data/raw-data'
-import {TOGGLE_FAVOURITE_MEAL} from '../actionType'
+import {SET_FILTER, TOGGLE_FAVOURITE_MEAL} from '../actionType'
 
 const initialState = {
     allMeals:MEAL,
@@ -26,7 +26,33 @@ const mealReducer = (state=initialState,action)=>{
                     favourites:state.favourites.concat(newMeal)
                 }
             }
-    
+        
+        case SET_FILTER:
+            const updateFilteredMeals = state.allMeals.filter(meals=>{
+                if(action.payload.Gulten && !meals.isGlutenFree){
+                    return false
+                }
+
+                if(action.payload.Lactos && !meals.isLactoseFree){
+                    return false
+                }
+
+                if(action.payload.Vegan && !meals.isVegan){
+                    return false
+                }
+
+                if(action.payload.Vegetarian && !meals.isVegetarian){
+                    return false
+                }
+
+                return true
+            })
+            console.log(updateFilteredMeals.length)
+            return {
+                ...state,
+                filteredMeals:updateFilteredMeals
+            }
+
         default:
             return state
     }
